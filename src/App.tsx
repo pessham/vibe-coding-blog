@@ -1,4 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+
+function LocationDebug() {
+  const location = useLocation();
+  console.log('Current location:', location);
+  return null;
+}
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -13,6 +19,7 @@ function App() {
         <Header />
         
         <main className="flex-grow">
+          <LocationDebug />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
