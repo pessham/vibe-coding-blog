@@ -97,3 +97,12 @@ git push origin main
 GitHub Actions自動デプロイのテストです。
 
 Thu Jul  3 08:20:48 JST 2025
+
+## デプロイテスト
+正しいConoHa WING設定でのデプロイテスト
+
+- ユーザー名: 02pd2_c2707589
+- パス: /home/02pd2_c2707589/public_html/pessham.com/viblog/
+- デプロイ先: https://pessham.com/viblog/
+
+実行日時: Thu Jul  3 08:58:07 JST 2025
