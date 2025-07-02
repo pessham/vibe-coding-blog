@@ -14,7 +14,7 @@ export const samplePosts: BlogPost[] = [
         current: 'pessham'
       }
     },
-    mainImage: null,
+    mainImage: undefined,
     categories: [
       {
         title: 'バイブコーディング',

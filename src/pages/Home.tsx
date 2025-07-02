@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import type { BlogPost } from '../types/blog';
 import { samplePosts } from '../data/samplePosts';
-import { getRecentPosts } from '../lib/sanity';
+// import { getRecentPosts } from '../lib/sanity';
 import BlogCard from '../components/BlogCard';
 import SEO from '../components/SEO';
 
