@@ -83,4 +83,8 @@ git commit -m "更新内容"
 git push origin main
 ```
 
-プッシュ後、約2-3分でデプロイが完了します。
+プッシュ後、約2-3分でデプロイが完了します。# テスト更新
+
+GitHub Actions自動デプロイのテストです。
+
+Thu Jul  3 08:20:48 JST 2025
