@@ -16,8 +16,8 @@ GitHub Actionsを使ってConoHa WINGに自動デプロイする設定手順で�
 
 ### SSH接続情報確認
 サーバー管理画面で以下の情報を確認：
-- **ホスト名**: `pessham.conohawing.com`（アカウント名.conohawing.com）
-- **ユーザー名**: `pessham`（アカウント名）
+- **ホスト名**: `pessham.conohawing.com`
+- **ユーザー名**: `02pd2_c2707589`（実際のアカウント名）
 - **ポート**: `2222`
 
 ### デプロイ先パス確認
@@ -27,11 +27,9 @@ GitHub Actionsを使ってConoHa WINGに自動デプロイする設定手順で�
    - サイト管理 → ファイルマネージャー
    - 実際のフォルダ構造を確認
 
-2. **よくあるパターン**
-   - `/home/pessham/pessham.com/`
-   - `/home/pessham/public_html/pessham.com/`
-   - `/home/pessham/public_html/`
-   - `/home/pessham/www/pessham.com/`
+2. **あなたの実際のパス**
+   - 確認済み: `/home/02pd2_c2707589/public_html/pessham.com/viblog/`
+   - サイトURL: `https://pessham.com/viblog/`
 
 ## 2. GitHub Secrets 設定
 
@@ -42,9 +40,9 @@ GitHubリポジトリ設定で以下のSecretsを追加：
 | Secret名 | 値 | 例 |
 |----------|----|----|
 | `CONOHA_HOST` | ホスト名 | `pessham.conohawing.com` |
-| `CONOHA_USER` | ユーザー名 | `pessham` |
+| `CONOHA_USER` | ユーザー名 | `02pd2_c2707589` |
 | `CONOHA_PORT` | ポート番号 | `2222` |
-| `CONOHA_REMOTE_PATH` | デプロイ先パス | `/home/pessham/pessham.com/` ※要確認 |
+| `CONOHA_REMOTE_PATH` | デプロイ先パス | `/home/02pd2_c2707589/public_html/pessham.com/viblog/` |
 | `CONOHA_SSH_KEY` | 秘密鍵の内容 | `-----BEGIN RSA PRIVATE KEY-----...` |
 
 ### 秘密鍵の設定方法
