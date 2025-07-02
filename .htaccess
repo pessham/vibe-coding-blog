@@ -1,0 +1,22 @@
+RewriteEngine On
+
+# Handle Angular and React Router
+RewriteBase /vibecoding-blog/
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /vibecoding-blog/index.html [L]
+
+# MIME types for modern web assets
+AddType application/javascript .js
+AddType text/css .css
+
+# Cache control
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+</IfModule>

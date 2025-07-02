@@ -1,0 +1,287 @@
+@import "tailwindcss";
+
+/* Import pessham.com fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=M+PLUS+1p:wght@400;500;700;900&family=RocknRoll+One&display=swap');
+
+:root {
+  /* Vibe Coding Mind color scheme */
+  --clr-primary: #e74c3c;
+  --clr-primary-light: #ec7063;
+  --clr-primary-dark: #c0392b;
+  --clr-secondary: #0066cc;
+  --clr-black: #000000;
+  --clr-gray-dark: #333333;
+  --clr-gray: #666666;
+  --clr-gray-light: #f8f8f8;
+  --clr-white: #ffffff;
+  --clr-bg-1: #DAD9D5;
+  --clr-bg-2: #F5F3F4;
+  --radius: 8px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+  
+  /* Font families matching pessham.com */
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  
+  color: var(--clr-gray-dark);
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--clr-bg-1) 0%, var(--clr-bg-2) 100%);
+  color: var(--clr-gray-dark);
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Typography matching pessham.com */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'M PLUS 1p', 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--clr-black);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.heading-accent {
+  font-family: 'RocknRoll One', 'M PLUS 1p', sans-serif;
+}
+
+/* Links with pessham.com styling */
+a {
+  color: var(--clr-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--clr-primary);
+  transform: translateY(-1px);
+}
+
+/* Buttons matching pessham.com */
+.btn-primary {
+  background: linear-gradient(135deg, var(--clr-primary) 0%, var(--accent-orange) 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+  color: white;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--clr-black);
+  border: 2px solid var(--clr-black);
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-weight: 700;
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-secondary:hover {
+  background: var(--clr-black);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Card styles matching pessham.com */
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Blog content styling */
+.blog-content {
+  max-width: none;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  color: var(--clr-black);
+  font-weight: 700;
+  font-family: 'M PLUS 1p', 'Noto Sans JP', sans-serif;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content p {
+  color: var(--clr-gray-dark);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.blog-content img {
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid var(--clr-primary);
+  padding-left: 1.5rem;
+  font-style: italic;
+  color: var(--text-light);
+  margin: 1.5rem 0;
+  background: rgba(231, 76, 60, 0.05);
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.blog-content code {
+  background: rgba(231, 76, 60, 0.1);
+  color: var(--clr-primary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.blog-content pre {
+  background: var(--clr-black);
+  color: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 2rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.blog-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--clr-bg-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-primary-light);
+}
+
+/* Navigation links */
+.nav-link:hover {
+  background: rgba(231, 76, 60, 0.1);
+  color: var(--clr-primary) !important;
+  transform: translateY(-1px);
+}
+
+/* Enhanced red emphasis styles */
+.text-accent {
+  color: var(--clr-primary);
+}
+
+.bg-accent {
+  background: var(--clr-primary);
+}
+
+.bg-accent-gradient {
+  background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
+}
+
+.border-accent {
+  border-color: var(--clr-primary);
+}
+
+.shadow-accent {
+  box-shadow: 0 4px 20px rgba(231, 76, 60, 0.3);
+}
+
+/* Vibe coding specific styles */
+.vibe-highlight {
+  background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+}
+
+.vibe-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid transparent;
+  border-image: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%) 1;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.vibe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(231, 76, 60, 0.2);
+}

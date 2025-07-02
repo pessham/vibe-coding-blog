@@ -1,0 +1,10 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /vibe-coding-mind/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
+
+# MIME Types
+AddType application/javascript .js
+AddType text/css .css
+AddType image/svg+xml .svg
