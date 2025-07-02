@@ -4,23 +4,22 @@ GitHub Actionsを使ってConoHa WINGに自動デプロイする設定手順で�
 
 ## 1. ConoHa WING でのSSH設定
 
-### SSH有効化
-1. ConoHa WINGコントロールパネルにログイン
-2. 「サイト管理」→「サイト設定」→「応用設定」
-3. 「SSH」を有効化
-
 ### SSHキー作成
-1. 「SSH Key」→「+SSH Key」
-2. キー名を入力（例：github-actions）
-3. 「保存」をクリック
-4. **秘密鍵をダウンロード**（重要：再ダウンロード不可）
+1. ConoHa WINGコントロールパネルにログイン
+2. 左メニューの **「サーバー管理」** をクリック
+3. **「SSH Key」** を選択
+4. 既存のキーがあれば削除
+5. **「+SSH Key」** で新しいキー作成
+6. キー名を入力（例：`github-actions`）
+7. **「保存」** をクリック
+8. **秘密鍵をダウンロード**（重要：再ダウンロード不可）
 
 ### SSH接続情報確認
-コントロールパネルで以下の情報を確認：
-- **ホスト名**: `[アカウント名].conohawing.com`
-- **ユーザー名**: `[アカウント名]`
+サーバー管理画面で以下の情報を確認：
+- **ホスト名**: `pessham.conohawing.com`（アカウント名.conohawing.com）
+- **ユーザー名**: `pessham`（アカウント名）
 - **ポート**: `2222`
-- **パス**: `/home/[アカウント名]/public_html/[ドメイン名]`
+- **パス**: `/home/pessham/public_html/pessham.com/`（ドメインに応じて調整）
 
 ## 2. GitHub Secrets 設定
 
@@ -30,10 +29,10 @@ GitHubリポジトリ設定で以下のSecretsを追加：
 
 | Secret名 | 値 | 例 |
 |----------|----|----|
-| `CONOHA_HOST` | ホスト名 | `yourname.conohawing.com` |
-| `CONOHA_USER` | ユーザー名 | `yourname` |
+| `CONOHA_HOST` | ホスト名 | `pessham.conohawing.com` |
+| `CONOHA_USER` | ユーザー名 | `pessham` |
 | `CONOHA_PORT` | ポート番号 | `2222` |
-| `CONOHA_REMOTE_PATH` | デプロイ先パス | `/home/yourname/public_html/yourdomain.com/` |
+| `CONOHA_REMOTE_PATH` | デプロイ先パス | `/home/pessham/public_html/pessham.com/` |
 | `CONOHA_SSH_KEY` | 秘密鍵の内容 | `-----BEGIN RSA PRIVATE KEY-----...` |
 
 ### 秘密鍵の設定方法
