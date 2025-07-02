@@ -7,7 +7,9 @@ export const client = createClient({
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'eeap5n6b',
   dataset: import.meta.env.VITE_SANITY_DATASET || 'production',
   useCdn: false,
-  apiVersion: '2023-01-01',
+  apiVersion: import.meta.env.VITE_SANITY_API_VERSION || '2023-01-01',
+  token: import.meta.env.VITE_SANITY_TOKEN,
+  ignoreBrowserTokenWarning: true
 });
 
 // Image URL builder

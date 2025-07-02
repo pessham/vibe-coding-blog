@@ -41,13 +41,20 @@ export default function BlogCard({ post }: BlogCardProps) {
     <article className="card overflow-hidden">
       <Link to={`/blog/${post.slug.current}`}>
         <div className="aspect-video overflow-hidden">
-          {post.mainImage ? (
+          {post.mainImage && post.mainImage.asset && post.mainImage.asset._ref && post.mainImage.asset._ref.startsWith('image-') ? (
             <img
               src={urlFor(post.mainImage).width(600).height(300).url()}
               alt={post.mainImage.alt || post.title}
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              onError={(e) => {
+                // Sanity画像エラー時はUnsplash画像にフォールバック
+                e.currentTarget.style.display = 'none';
+                const fallbackDiv = e.currentTarget.nextElementSibling as HTMLElement;
+                if (fallbackDiv) fallbackDiv.style.display = 'block';
+              }}
             />
-          ) : (
+          ) : null}
+          <div style={{ display: post.mainImage && post.mainImage.asset && post.mainImage.asset._ref && post.mainImage.asset._ref.startsWith('image-') ? 'none' : 'block' }}>
             <UnsplashImage
               query={getImageQuery()}
               width={600}
@@ -56,7 +63,7 @@ export default function BlogCard({ post }: BlogCardProps) {
               className="w-full h-full hover:scale-105 transition-transform duration-300"
               fallbackText={post.title.substring(0, 10)}
             />
-          )}
+          </div>
         </div>
       </Link>
       

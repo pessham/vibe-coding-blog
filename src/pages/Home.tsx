@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import type { BlogPost } from '../types/blog';
 import { samplePosts } from '../data/samplePosts';
+import { getRecentPosts } from '../lib/sanity';
 import BlogCard from '../components/BlogCard';
 import SEO from '../components/SEO';
 
@@ -10,11 +11,11 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // サンプル記事を読み込み
+    // CORSエラーを避けるため、開発環境ではサンプルデータを使用
     setTimeout(() => {
       setRecentPosts(samplePosts);
       setLoading(false);
-    }, 100);
+    }, 500);
   }, []);
 
   return (

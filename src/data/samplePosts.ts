@@ -14,13 +14,7 @@ export const samplePosts: BlogPost[] = [
         current: 'pessham'
       }
     },
-    mainImage: {
-      asset: {
-        _ref: 'sample-image',
-        _type: 'reference'
-      },
-      alt: 'バイブコーディングのイメージ - AIとの協働開発'
-    },
+    mainImage: null,
     categories: [
       {
         title: 'バイブコーディング',
