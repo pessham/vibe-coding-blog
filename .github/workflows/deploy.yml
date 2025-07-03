@@ -33,7 +33,7 @@ jobs:
         # Handle React Router
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteCond %{REQUEST_FILENAME} !-d
-        RewriteRule . /index.html [L]
+        RewriteRule . /viblog/index.html [L]
         
         # MIME Types
         AddType application/javascript .js
