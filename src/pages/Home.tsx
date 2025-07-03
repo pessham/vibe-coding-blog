@@ -37,7 +37,7 @@ export default function Home() {
             className="h-full object-cover opacity-10"
             style={{aspectRatio: '9/16'}}
           >
-            <source src="/images/ClaudeCode.mp4" type="video/mp4" />
+            <source src={`${import.meta.env.BASE_URL}images/ClaudeCode.mp4`} type="video/mp4" />
           </video>
         </div>
         
@@ -285,8 +285,8 @@ export default function Home() {
                 playsInline
                 className="w-full max-w-2xl h-auto rounded-lg shadow-lg"
               >
-                <source src="/images/0701レコーディング実演.mov" type="video/mp4" />
-                <source src="/images/0701レコーディング実演.mov" type="video/quicktime" />
+                <source src={`${import.meta.env.BASE_URL}images/0701レコーディング実演.mov`} type="video/mp4" />
+                <source src={`${import.meta.env.BASE_URL}images/0701レコーディング実演.mov`} type="video/quicktime" />
               </video>
             </div>
           </div>

@@ -14,7 +14,12 @@ export const samplePosts: BlogPost[] = [
         current: 'pessham'
       }
     },
-    mainImage: undefined,
+    mainImage: {
+      asset: {
+        _ref: 'image-sample123-2000x3000-jpg',
+        _type: 'reference'
+      }
+    },
     categories: [
       {
         title: 'バイブコーディング',
