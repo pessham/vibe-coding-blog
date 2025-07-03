@@ -159,6 +159,26 @@ export default function BlogPost() {
           </ul>
         );
       }
+      // 長い段落を自動的に改行で分割
+      const sentences = paragraph.split(/(?<=[。！？])\s*/).filter(s => s.trim());
+      if (sentences.length > 3) {
+        // 3文以上の場合は分割して表示
+        const midPoint = Math.ceil(sentences.length / 2);
+        const firstHalf = sentences.slice(0, midPoint).join('');
+        const secondHalf = sentences.slice(midPoint).join('');
+        
+        return (
+          <div key={index} className="mb-6">
+            <p className="text-lg leading-relaxed mb-3" style={{color: 'var(--clr-gray-dark)'}} 
+               dangerouslySetInnerHTML={{ __html: firstHalf.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--clr-primary)">$1</strong>') }}>
+            </p>
+            <p className="text-lg leading-relaxed" style={{color: 'var(--clr-gray-dark)'}} 
+               dangerouslySetInnerHTML={{ __html: secondHalf.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--clr-primary)">$1</strong>') }}>
+            </p>
+          </div>
+        );
+      }
+      
       return (
         <p key={index} className="text-lg leading-relaxed mb-6" style={{color: 'var(--clr-gray-dark)'}} 
            dangerouslySetInnerHTML={{ __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--clr-primary)">$1</strong>') }}>
@@ -186,7 +206,7 @@ export default function BlogPost() {
             className="w-full h-full"
             fallbackText="Vibe Coding"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-80"></div>
           <div className="absolute bottom-8 left-8 right-8">
             <div className="max-w-4xl mx-auto">
               <Link 
@@ -195,9 +215,20 @@ export default function BlogPost() {
               >
                 ← ブログ一覧に戻る
               </Link>
-              <h1 className="text-3xl lg:text-5xl font-black text-white leading-tight">
-                {post.title}
-              </h1>
+              <div className="bg-black bg-opacity-60 p-6 rounded-lg backdrop-blur-sm">
+                <h1 
+                  className="text-3xl lg:text-5xl font-black leading-tight"
+                  style={{
+                    color: '#ffffff',
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+                    backgroundColor: 'rgba(0,0,0,0.3)',
+                    padding: '1rem',
+                    borderRadius: '0.5rem'
+                  }}
+                >
+                  {post.title}
+                </h1>
+              </div>
             </div>
           </div>
         </div>
