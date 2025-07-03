@@ -12,7 +12,11 @@ export default function Home() {
   useEffect(() => {
     // CORSエラーを避けるため、開発環境ではサンプルデータを使用
     setTimeout(() => {
-      setRecentPosts(samplePosts);
+      // 日付順で記事をソート（新しい順）
+      const sortedPosts = [...samplePosts].sort((a, b) => 
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      );
+      setRecentPosts(sortedPosts);
       setLoading(false);
     }, 500);
   }, []);
