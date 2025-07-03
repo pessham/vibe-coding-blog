@@ -97,18 +97,16 @@ jobs:
         timeout 30 ssh -p ${{ secrets.CONOHA_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 \
           ${{ secrets.CONOHA_USER }}@${{ secrets.CONOHA_HOST }} "pwd && ls -la" || echo "SSH connection failed"
         
-    - name: Deploy via FTP (fallback)
+    - name: Deploy to ConoHa WING via rsync
       run: |
-        echo "SSH failed, trying FTP deployment..."
-        sudo apt-get update && sudo apt-get install -y lftp
-        
-        # FTP upload
-        lftp -c "
-          set ssl:verify-certificate no;
-          set ftp:ssl-allow no;
-          open -u ${{ secrets.CONOHA_FTP_USER }},${{ secrets.CONOHA_FTP_PASS }} ${{ secrets.CONOHA_HOST }};
-          lcd dist;
-          cd ${{ secrets.CONOHA_REMOTE_PATH }};
-          mirror --reverse --delete --verbose;
-          quit
-        " || echo "FTP deployment failed"
+        rsync -avzr --delete \
+          -e "ssh -p ${{ secrets.CONOHA_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+          dist/ \
+          ${{ secrets.CONOHA_USER }}@${{ secrets.CONOHA_HOST }}:${{ secrets.CONOHA_REMOTE_PATH }}
+          
+    - name: Verify deployment
+      run: |
+        echo "=== Verifying deployment ==="
+        ssh -p ${{ secrets.CONOHA_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
+          ${{ secrets.CONOHA_USER }}@${{ secrets.CONOHA_HOST }} \
+          "ls -la ${{ secrets.CONOHA_REMOTE_PATH }} && echo '=== Files in viblog directory ===' && find ${{ secrets.CONOHA_REMOTE_PATH }} -type f -name '*.html' | head -10"
