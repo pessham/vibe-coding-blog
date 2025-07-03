@@ -65,51 +65,27 @@ jobs:
         </IfModule>
         EOF
         
-    - name: Debug SSH Key Setup
+    - name: Deploy to ConoHa WING via FTP
       run: |
-        echo "=== Creating SSH directory ==="
-        mkdir -p ~/.ssh
-        echo "SSH directory created successfully"
+        # Install lftp for FTP deployment
+        sudo apt-get update && sudo apt-get install -y lftp
         
-        echo "=== Checking SSH key format ==="
-        echo "SSH key starts with:"
-        echo "${{ secrets.CONOHA_SSH_KEY }}" | head -1
-        echo "SSH key ends with:"
-        echo "${{ secrets.CONOHA_SSH_KEY }}" | tail -1
-        echo "SSH key line count:"
-        echo "${{ secrets.CONOHA_SSH_KEY }}" | wc -l
+        # Create lftp script for deployment
+        cat > deploy.lftp << 'EOF'
+        set ftp:ssl-allow no
+        set ftp:passive-mode on
+        set net:timeout 30
+        set net:max-retries 3
+        open -u ${{ secrets.CONOHA_FTP_USER }},${{ secrets.CONOHA_FTP_PASS }} ftp://${{ secrets.CONOHA_HOST }}
+        cd public_html/pessham.com/viblog/
+        mirror --reverse --delete --verbose dist/ ./
+        bye
+        EOF
         
-        echo "=== Writing SSH key ==="
-        echo "${{ secrets.CONOHA_SSH_KEY }}" > ~/.ssh/id_rsa
-        echo "SSH key written to file"
+        # Execute FTP deployment
+        lftp -f deploy.lftp
         
-        echo "=== Setting permissions ==="
-        chmod 600 ~/.ssh/id_rsa
-        echo "Permissions set successfully"
-        
-        echo "=== Validating SSH key ==="
-        ssh-keygen -l -f ~/.ssh/id_rsa || echo "Key validation failed - this is expected if key format is incorrect"
-        
-        echo "=== Adding known hosts ==="
-        ssh-keyscan -p ${{ secrets.CONOHA_PORT }} ${{ secrets.CONOHA_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || echo "ssh-keyscan failed"
-        echo "Setup completed"
-        
-    - name: Test SSH Connection
+    - name: Verify FTP deployment
       run: |
-        echo "Testing SSH connection..."
-        timeout 30 ssh -p ${{ secrets.CONOHA_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o ConnectTimeout=10 \
-          ${{ secrets.CONOHA_USER }}@${{ secrets.CONOHA_HOST }} "pwd && ls -la" || echo "SSH connection failed"
-        
-    - name: Deploy to ConoHa WING via rsync
-      run: |
-        rsync -avzr --delete \
-          -e "ssh -p ${{ secrets.CONOHA_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-          dist/ \
-          ${{ secrets.CONOHA_USER }}@${{ secrets.CONOHA_HOST }}:${{ secrets.CONOHA_REMOTE_PATH }}
-          
-    - name: Verify deployment
-      run: |
-        echo "=== Verifying deployment ==="
-        ssh -p ${{ secrets.CONOHA_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
-          ${{ secrets.CONOHA_USER }}@${{ secrets.CONOHA_HOST }} \
-          "ls -la ${{ secrets.CONOHA_REMOTE_PATH }} && echo '=== Files in viblog directory ===' && find ${{ secrets.CONOHA_REMOTE_PATH }} -type f -name '*.html' | head -10"
+        echo "=== FTP Deployment completed ==="
+        echo "Site should be available at: https://pessham.com/viblog/"
