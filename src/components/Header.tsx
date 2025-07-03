@@ -41,6 +41,13 @@ export default function Header() {
               観光業DX
             </Link>
             <Link
+              to="/blog?category=agriculture"
+              className="nav-link px-4 py-2 rounded-lg text-sm font-bold transition-all hover:scale-105"
+              style={{color: 'var(--clr-gray-dark)'}}
+            >
+              農業DX
+            </Link>
+            <Link
               to="/blog"
               className="nav-link px-4 py-2 rounded-lg text-sm font-bold transition-all hover:scale-105"
               style={{color: 'var(--clr-gray-dark)'}}

@@ -321,5 +321,74 @@ export const samplePosts: BlogPost[] = [
       description: '中堅製造業が生成AIを活用した品質管理データ分析で不良品率35%削減、分析時間2.5時間短縮を実現。具体的な導入手順、成功要因、ROIまで詳しく解説します。',
       keywords: ['製造業AI', '品質管理', 'ChatGPT', '地方企業', 'DX', '不良品削減', 'データ分析', '生成AI活用', '製造業DX', 'AI導入事例']
     }
+  },
+  {
+    _id: 'sample-2',
+    _type: 'post',
+    title: 'スマート農業のAI活用事例 - 収穫量25%向上と病害虫被害30%削減を実現',
+    slug: {
+      current: 'smart-agriculture-ai-case-study'
+    },
+    author: {
+      name: 'ペスハム',
+      slug: {
+        current: 'pessham'
+      }
+    },
+    mainImage: {
+      asset: {
+        _ref: 'image-agriculture789-2000x3000-jpg',
+        _type: 'reference'
+      }
+    },
+    categories: [
+      {
+        title: '農業DX',
+        slug: {
+          current: 'agriculture'
+        }
+      },
+      {
+        title: 'スマート農業',
+        slug: {
+          current: 'smart-farming'
+        }
+      }
+    ],
+    publishedAt: '2025-07-02T00:00:00Z',
+    body: [
+      {
+        _type: 'block',
+        children: [
+          {
+            _type: 'span',
+            text: '地方のスマート農園C農場が、気象データと栽培履歴をAIで分析することで、収穫量25%向上、病害虫被害30%削減を実現した事例をご紹介します。'
+          }
+        ]
+      },
+      {
+        _type: 'block',
+        children: [
+          {
+            _type: 'span',
+            text: '## 農場の背景と課題'
+          }
+        ]
+      },
+      {
+        _type: 'block',
+        children: [
+          {
+            _type: 'span',
+            text: 'C農場は5ヘクタールの野菜栽培を行う家族経営農場で、気候変動による収穫量の不安定さと、病害虫対策の困難さに悩んでいました。特に収穫時期の判断と予防的な病害虫対策に課題を抱えていました。'
+          }
+        ]
+      }
+    ],
+    seo: {
+      title: 'スマート農業のAI活用事例 - 収穫量25%向上と病害虫被害30%削減【地方AIブースター】',
+      description: '家族経営農場がAIを活用した栽培データ分析で収穫量25%向上、病害虫被害30%削減を実現。具体的な導入手順、成功要因、ROIまで詳しく解説します。',
+      keywords: ['スマート農業', '農業AI', '収穫予測', '病害虫対策', '地方農業', 'DX', 'データ分析', '生成AI活用', '農業DX', 'AI導入事例']
+    }
   }
 ];
