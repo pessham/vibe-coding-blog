@@ -71,9 +71,12 @@ export default function BlogCard({ post }: BlogCardProps) {
             />
           </div>
           {/* タイトルオーバーレイ */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent">
             <div className="absolute bottom-4 left-4 right-4">
-              <h2 className="text-white text-lg font-bold leading-tight line-clamp-2 drop-shadow-lg">
+              <h2 className="text-white text-lg font-bold leading-tight line-clamp-2" style={{
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+                color: '#ffffff'
+              }}>
                 {post.title}
               </h2>
             </div>
@@ -82,16 +85,13 @@ export default function BlogCard({ post }: BlogCardProps) {
       </Link>
       
       <div className="p-6">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center mb-3">
           <time
             dateTime={post.publishedAt}
             className="text-sm text-gray-500"
           >
             {formatDate(post.publishedAt)}
           </time>
-          <span className="text-sm text-gray-600 font-medium">
-            {post.author?.name || '作者不明'}
-          </span>
         </div>
         
         

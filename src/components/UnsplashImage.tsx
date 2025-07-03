@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-const UNSPLASH_ACCESS_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
-
 interface UnsplashImageProps {
   query: string;
   width: number;
@@ -16,46 +14,27 @@ export default function UnsplashImage({ query, width: _width, height: _height, a
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('UnsplashImage: API Key exists:', !!UNSPLASH_ACCESS_KEY);
-    console.log('UnsplashImage: Query:', query);
-    
-    if (!UNSPLASH_ACCESS_KEY) {
-      console.error('Unsplash Access Key is not defined.');
-      setLoading(false);
-      return;
-    }
-
-    const fetchImage = async () => {
-      try {
-        const url = `https://api.unsplash.com/photos/random?query=${encodeURIComponent(query)}&client_id=${UNSPLASH_ACCESS_KEY}`;
-        console.log('UnsplashImage: Fetching from:', url);
-        
-        const response = await fetch(url);
-        console.log('UnsplashImage: Response status:', response.status);
-        
-        if (!response.ok) {
-          const errorText = await response.text();
-          console.error('UnsplashImage: API Error:', response.status, errorText);
-          setLoading(false);
-          return;
-        }
-        
-        const data = await response.json();
-        console.log('UnsplashImage: Response data:', data);
-        
-        if (data.urls && data.urls.regular) {
-          console.log('UnsplashImage: Setting image URL:', data.urls.regular);
-          setImageUrl(data.urls.regular);
-        } else {
-          console.error('UnsplashImage: No image found for query:', query, data);
-        }
-      } catch (error) {
-        console.error('UnsplashImage: Fetch error:', error);
+    // API制限回避のため、カテゴリーに応じた固定画像を使用
+    const getStaticImageUrl = (query: string) => {
+      if (query.includes('manufacturing') || query.includes('factory')) {
+        return 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
       }
-      setLoading(false);
+      if (query.includes('agriculture') || query.includes('farming')) {
+        return 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+      }
+      if (query.includes('business') || query.includes('office')) {
+        return 'https://images.unsplash.com/photo-1664575602276-acd073f104c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+      }
+      if (query.includes('tourism') || query.includes('travel')) {
+        return 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+      }
+      // デフォルト：テクノロジー/AI関連
+      return 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
     };
 
-    fetchImage();
+    const staticImageUrl = getStaticImageUrl(query);
+    setImageUrl(staticImageUrl);
+    setLoading(false);
   }, [query]);
 
   if (loading) {
@@ -68,8 +47,6 @@ export default function UnsplashImage({ query, width: _width, height: _height, a
         src={imageUrl} 
         alt={alt} 
         className={`${className} object-cover`}
-        onLoad={() => console.log('UnsplashImage: Image loaded successfully')}
-        onError={(e) => console.error('UnsplashImage: Image load error:', e)}
       />
     );
   }
