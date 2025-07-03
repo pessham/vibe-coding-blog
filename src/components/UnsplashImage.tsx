@@ -49,7 +49,7 @@ export default function UnsplashImage({ query, width: _width, height: _height, a
   }
 
   return (
-    <div className={`${className} bg-gray-800 flex items-center justify-center`}>
+    <div className={`${className} bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center`}>
       <span className="text-white text-2xl font-bold">{fallbackText || 'Image'}</span>
     </div>
   );
