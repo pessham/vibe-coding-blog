@@ -197,38 +197,34 @@ export default function BlogPost() {
       
       <article>
         {/* ヒーロー画像セクション */}
-        <div className="relative h-80 lg:h-96 mb-16 bg-gray-900" style={{ position: 'relative', overflow: 'hidden' }}>
-          <UnsplashImage
-            query={getImageQuery()}
-            width={1200}
-            height={600}
-            alt={post.title}
-            className=""
-            fallbackText="Vibe Coding"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-80" style={{ zIndex: 2 }}></div>
-          <div className="absolute bottom-8 left-8 right-8" style={{ zIndex: 3 }}>
-            <div className="max-w-4xl mx-auto">
+        <div className="relative h-80 lg:h-96 mb-16 overflow-hidden">
+          {/* 背景画像 */}
+          <div className="absolute inset-0">
+            <UnsplashImage
+              query={getImageQuery()}
+              width={1200}
+              height={600}
+              alt={post.title}
+              className="w-full h-full object-cover"
+              fallbackText="Vibe Coding"
+            />
+          </div>
+          
+          {/* オーバーレイ */}
+          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+          
+          {/* タイトルコンテンツ */}
+          <div className="relative z-10 h-full flex flex-col justify-end p-8">
+            <div className="max-w-4xl mx-auto w-full">
               <Link 
                 to="/blog"
                 className="inline-flex items-center text-white text-lg font-bold transition-colors hover:underline mb-4"
               >
                 ← ブログ一覧に戻る
               </Link>
-              <div className="bg-black bg-opacity-60 p-6 rounded-lg backdrop-blur-sm">
-                <h1 
-                  className="text-3xl lg:text-5xl font-black leading-tight"
-                  style={{
-                    color: '#ffffff',
-                    textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
-                    backgroundColor: 'rgba(0,0,0,0.3)',
-                    padding: '1rem',
-                    borderRadius: '0.5rem'
-                  }}
-                >
-                  {post.title}
-                </h1>
-              </div>
+              <h1 className="text-3xl lg:text-5xl font-black text-white leading-tight drop-shadow-lg">
+                {post.title}
+              </h1>
             </div>
           </div>
         </div>
