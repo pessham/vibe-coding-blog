@@ -101,13 +101,13 @@ export default function BlogPost() {
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
       
-      if (line.startsWith('- **') || line.startsWith('- ')) {
-        // リスト項目の処理
+      if (line.startsWith('- **') || line.startsWith('- ') || /^\d+\.\s/.test(line)) {
+        // リスト項目の処理（箇条書きと番号付きリスト）
         if (currentParagraph) {
           paragraphs.push(currentParagraph);
           currentParagraph = '';
         }
-        listItems.push(line.replace(/^- /, ''));
+        listItems.push(line.replace(/^- /, '').replace(/^\d+\.\s/, ''));
       } else if (line === '' && listItems.length > 0) {
         // リストの終了
         paragraphs.push('LIST:' + JSON.stringify(listItems));
@@ -149,14 +149,18 @@ export default function BlogPost() {
       if (paragraph.startsWith('LIST:')) {
         const items = JSON.parse(paragraph.replace('LIST:', ''));
         return (
-          <ul key={index} className="space-y-4 mb-8 pl-6">
+          <ol key={index} className="space-y-6 mb-8 pl-0">
             {items.map((item: string, i: number) => (
-              <li key={i} className="flex items-start text-lg leading-relaxed" style={{color: 'var(--clr-gray-dark)'}}>
-                <span className="text-[var(--clr-accent)] mr-3 mt-1 text-xl">•</span>
-                <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--clr-primary)">$1</strong>') }}></span>
+              <li key={i} className="flex items-start text-lg leading-relaxed bg-gray-50 p-4 rounded-lg border-l-4 border-[var(--clr-accent)]" style={{color: 'var(--clr-gray-dark)'}}>
+                <span className="text-[var(--clr-primary)] mr-4 mt-1 text-xl font-bold min-w-[2rem]">{i + 1}.</span>
+                <span dangerouslySetInnerHTML={{ 
+                  __html: item
+                    .replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--clr-primary)">$1</strong>')
+                    .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color: var(--clr-accent); text-decoration: underline;">$1</a>')
+                }}></span>
               </li>
             ))}
-          </ul>
+          </ol>
         );
       }
       // 長い段落を自動的に改行で分割
