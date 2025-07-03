@@ -46,9 +46,16 @@ GitHubリポジトリ設定で以下のSecretsを追加：
 | `CONOHA_SSH_KEY` | 秘密鍵の内容 | `-----BEGIN RSA PRIVATE KEY-----...` |
 
 ### 秘密鍵の設定方法
-1. ダウンロードした秘密鍵ファイルをテキストエディタで開く
-2. **全内容**をコピー（`-----BEGIN RSA PRIVATE KEY-----` から `-----END RSA PRIVATE KEY-----` まで）
-3. `CONOHA_SSH_KEY` Secretに貼り付け
+1. ダウンロードした秘密鍵ファイル（`.key`）をテキストエディタで開く
+2. **全内容**をコピー（`-----BEGIN ***PRIVATE KEY-----` から `-----END ***PRIVATE KEY-----` まで）
+3. **改行も含めて完全にコピー**
+4. GitHub Settings → Secrets → `CONOHA_SSH_KEY` に貼り付け
+
+### 注意点
+- 改行を保持して完全にコピー
+- ヘッダー・フッターも含める
+- 余分なスペースや文字を追加しない
+- OpenSSH形式の場合は `-----BEGIN OPENSSH PRIVATE KEY-----` から開始
 
 ## 3. デプロイの動作
 

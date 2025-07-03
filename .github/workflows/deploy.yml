@@ -62,13 +62,21 @@ jobs:
         </IfModule>
         EOF
         
+    - name: Setup SSH Key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.CONOHA_SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -p ${{ secrets.CONOHA_PORT }} ${{ secrets.CONOHA_HOST }} >> ~/.ssh/known_hosts
+        
+    - name: Test SSH Connection
+      run: |
+        ssh -p ${{ secrets.CONOHA_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
+          ${{ secrets.CONOHA_USER }}@${{ secrets.CONOHA_HOST }} "pwd && ls -la"
+        
     - name: Deploy to ConoHa WING via rsync
-      uses: burnett01/rsync-deployments@6.0.0
-      with:
-        switches: -avzr --delete
-        path: dist/
-        remote_path: ${{ secrets.CONOHA_REMOTE_PATH }}
-        remote_host: ${{ secrets.CONOHA_HOST }}
-        remote_user: ${{ secrets.CONOHA_USER }}
-        remote_port: ${{ secrets.CONOHA_PORT }}
-        remote_key: ${{ secrets.CONOHA_SSH_KEY }}
+      run: |
+        rsync -avzr --delete \
+          -e "ssh -p ${{ secrets.CONOHA_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+          dist/ \
+          ${{ secrets.CONOHA_USER }}@${{ secrets.CONOHA_HOST }}:${{ secrets.CONOHA_REMOTE_PATH }}
