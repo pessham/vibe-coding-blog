@@ -77,48 +77,94 @@ export default function BlogPost() {
         'プログラミング': 'programming coding computer development',
         'テクノロジー': 'technology innovation digital',
         'AI': 'artificial intelligence robot machine learning',
+        '製造業DX': 'manufacturing industry automation factory',
+        '農業DX': 'smart farming agriculture technology',
+        '中小企業': 'small business enterprise office',
+        'AI活用': 'artificial intelligence business technology',
+        'スマート農業': 'smart farming agriculture technology',
+        'AI導入事例': 'AI implementation business success',
       };
       
-      return keywordMap[categoryTitle || ''] || 'programming technology';
+      return keywordMap[categoryTitle || ''] || 'business technology';
     }
-    return 'programming technology';
+    return 'business technology';
   };
 
-  // Markdown風のテキストをHTMLに変換（簡易版）
+  // Markdown風のテキストをHTMLに変換（改良版）
   const formatContent = (text: string) => {
-    return text
-      .split('\n\n')
-      .map((paragraph, index) => {
-        if (paragraph.startsWith('## ')) {
-          return (
-            <h2 key={index} className="text-2xl font-bold mt-8 mb-4" style={{color: 'var(--clr-black)'}}>
-              {paragraph.replace('## ', '')}
-            </h2>
-          );
+    // テキストを行ごとに分割して処理
+    const lines = text.split('\n');
+    const paragraphs = [];
+    let currentParagraph = '';
+    let listItems = [];
+    
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+      
+      if (line.startsWith('- **') || line.startsWith('- ')) {
+        // リスト項目の処理
+        if (currentParagraph) {
+          paragraphs.push(currentParagraph);
+          currentParagraph = '';
         }
-        if (paragraph.startsWith('### ')) {
-          return (
-            <h3 key={index} className="text-xl font-bold mt-6 mb-3" style={{color: 'var(--clr-primary)'}}>
-              {paragraph.replace('### ', '')}
-            </h3>
-          );
-        }
-        if (paragraph.startsWith('- ')) {
-          const items = paragraph.split('\n- ').map(item => item.replace(/^- /, ''));
-          return (
-            <ul key={index} className="list-disc list-inside space-y-2 mb-6" style={{color: 'var(--clr-gray-dark)'}}>
-              {items.map((item, i) => (
-                <li key={i} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></li>
-              ))}
-            </ul>
-          );
-        }
+        listItems.push(line.replace(/^- /, ''));
+      } else if (line === '' && listItems.length > 0) {
+        // リストの終了
+        paragraphs.push('LIST:' + JSON.stringify(listItems));
+        listItems = [];
+      } else if (line === '' && currentParagraph) {
+        // 段落の終了
+        paragraphs.push(currentParagraph);
+        currentParagraph = '';
+      } else if (line !== '') {
+        // 通常の行
+        if (currentParagraph) currentParagraph += ' ';
+        currentParagraph += line;
+      }
+    }
+    
+    // 残りの処理
+    if (listItems.length > 0) {
+      paragraphs.push('LIST:' + JSON.stringify(listItems));
+    }
+    if (currentParagraph) {
+      paragraphs.push(currentParagraph);
+    }
+    
+    return paragraphs.map((paragraph, index) => {
+      if (paragraph.startsWith('## ')) {
         return (
-          <p key={index} className="text-lg leading-relaxed mb-6" style={{color: 'var(--clr-gray-dark)'}} 
-             dangerouslySetInnerHTML={{ __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}>
-          </p>
+          <h2 key={index} className="text-3xl font-bold mt-8 mb-6" style={{color: 'var(--clr-primary)'}}>
+            {paragraph.replace('## ', '')}
+          </h2>
         );
-      });
+      }
+      if (paragraph.startsWith('### ')) {
+        return (
+          <h3 key={index} className="text-2xl font-bold mt-6 mb-4" style={{color: 'var(--clr-primary)'}}>
+            {paragraph.replace('### ', '')}
+          </h3>
+        );
+      }
+      if (paragraph.startsWith('LIST:')) {
+        const items = JSON.parse(paragraph.replace('LIST:', ''));
+        return (
+          <ul key={index} className="space-y-4 mb-8 pl-6">
+            {items.map((item: string, i: number) => (
+              <li key={i} className="flex items-start text-lg leading-relaxed" style={{color: 'var(--clr-gray-dark)'}}>
+                <span className="text-[var(--clr-accent)] mr-3 mt-1 text-xl">•</span>
+                <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--clr-primary)">$1</strong>') }}></span>
+              </li>
+            ))}
+          </ul>
+        );
+      }
+      return (
+        <p key={index} className="text-lg leading-relaxed mb-6" style={{color: 'var(--clr-gray-dark)'}} 
+           dangerouslySetInnerHTML={{ __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--clr-primary)">$1</strong>') }}>
+        </p>
+      );
+    });
   };
 
   return (
