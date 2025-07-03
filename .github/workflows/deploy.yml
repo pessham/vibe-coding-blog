@@ -62,12 +62,34 @@ jobs:
         </IfModule>
         EOF
         
-    - name: Setup SSH Key
+    - name: Debug SSH Key Setup
       run: |
+        echo "=== Creating SSH directory ==="
         mkdir -p ~/.ssh
+        echo "SSH directory created successfully"
+        
+        echo "=== Checking SSH key format ==="
+        echo "SSH key starts with:"
+        echo "${{ secrets.CONOHA_SSH_KEY }}" | head -1
+        echo "SSH key ends with:"
+        echo "${{ secrets.CONOHA_SSH_KEY }}" | tail -1
+        echo "SSH key line count:"
+        echo "${{ secrets.CONOHA_SSH_KEY }}" | wc -l
+        
+        echo "=== Writing SSH key ==="
         echo "${{ secrets.CONOHA_SSH_KEY }}" > ~/.ssh/id_rsa
+        echo "SSH key written to file"
+        
+        echo "=== Setting permissions ==="
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -p ${{ secrets.CONOHA_PORT }} ${{ secrets.CONOHA_HOST }} >> ~/.ssh/known_hosts
+        echo "Permissions set successfully"
+        
+        echo "=== Validating SSH key ==="
+        ssh-keygen -l -f ~/.ssh/id_rsa || echo "Key validation failed - this is expected if key format is incorrect"
+        
+        echo "=== Adding known hosts ==="
+        ssh-keyscan -p ${{ secrets.CONOHA_PORT }} ${{ secrets.CONOHA_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || echo "ssh-keyscan failed"
+        echo "Setup completed"
         
     - name: Test SSH Connection
       run: |
