@@ -205,7 +205,10 @@ export default function BlogPost() {
             >
               ← ブログ一覧に戻る
             </Link>
-            <h1 className="text-3xl lg:text-5xl font-black text-white leading-tight">
+            <h1 
+              className="text-3xl lg:text-5xl font-black text-white leading-tight"
+              style={{ color: '#ffffff', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}
+            >
               {post.title}
             </h1>
           </div>
