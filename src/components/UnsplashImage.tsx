@@ -63,7 +63,15 @@ export default function UnsplashImage({ query, width: _width, height: _height, a
   }
 
   if (imageUrl) {
-    return <img src={imageUrl} alt={alt} className={`${className} object-cover`} />;
+    return (
+      <img 
+        src={imageUrl} 
+        alt={alt} 
+        className={`${className} object-cover`}
+        onLoad={() => console.log('UnsplashImage: Image loaded successfully')}
+        onError={(e) => console.error('UnsplashImage: Image load error:', e)}
+      />
+    );
   }
 
   return (

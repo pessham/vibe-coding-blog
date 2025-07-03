@@ -206,8 +206,8 @@ export default function BlogPost() {
             className="w-full h-full"
             fallbackText="Vibe Coding"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-80"></div>
-          <div className="absolute bottom-8 left-8 right-8">
+          <div className="absolute inset-0 bg-black bg-opacity-80" style={{ zIndex: 2 }}></div>
+          <div className="absolute bottom-8 left-8 right-8" style={{ zIndex: 3 }}>
             <div className="max-w-4xl mx-auto">
               <Link 
                 to="/blog"

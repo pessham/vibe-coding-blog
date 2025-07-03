@@ -24,12 +24,18 @@ export default function BlogCard({ post }: BlogCardProps) {
       
       // 日本語のカテゴリーを英語の検索キーワードに変換
       const keywordMap: { [key: string]: string } = {
-        'バイブコーディング': 'coding programming AI technology',
-        'AI開発': 'artificial intelligence coding',
-        'プログラミング哲学': 'programming philosophy code',
-        'プログラミング': 'programming coding computer',
-        'テクノロジー': 'technology innovation',
-        'AI': 'artificial intelligence robot',
+        'バイブコーディング': 'coding programming AI technology futuristic',
+        'AI開発': 'artificial intelligence coding development',
+        'プログラミング哲学': 'programming philosophy code thinking',
+        'プログラミング': 'programming coding computer development',
+        'テクノロジー': 'technology innovation digital',
+        'AI': 'artificial intelligence robot machine learning',
+        '製造業DX': 'manufacturing industry automation factory',
+        '農業DX': 'smart farming agriculture technology',
+        '中小企業': 'small business enterprise office',
+        'AI活用': 'artificial intelligence business technology',
+        'スマート農業': 'smart farming agriculture technology',
+        'AI導入事例': 'AI implementation business success',
       };
       
       return keywordMap[categoryTitle || ''] || 'programming technology';
@@ -40,10 +46,10 @@ export default function BlogCard({ post }: BlogCardProps) {
   return (
     <article className="card overflow-hidden">
       <Link to={`/blog/${post.slug.current}`}>
-        <div className="aspect-video overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden">
           {post.mainImage && post.mainImage.asset && post.mainImage.asset._ref && post.mainImage.asset._ref.startsWith('image-') ? (
             <img
-              src={urlFor(post.mainImage).width(600).height(300).url()}
+              src={urlFor(post.mainImage).width(600).height(450).url()}
               alt={post.mainImage.alt || post.title}
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               onError={(e) => {
@@ -58,11 +64,19 @@ export default function BlogCard({ post }: BlogCardProps) {
             <UnsplashImage
               query={getImageQuery()}
               width={600}
-              height={300}
+              height={450}
               alt={post.title}
               className="w-full h-full hover:scale-105 transition-transform duration-300"
               fallbackText={post.title.substring(0, 10)}
             />
+          </div>
+          {/* タイトルオーバーレイ */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+            <div className="absolute bottom-4 left-4 right-4">
+              <h2 className="text-white text-lg font-bold leading-tight line-clamp-2 drop-shadow-lg">
+                {post.title}
+              </h2>
+            </div>
           </div>
         </div>
       </Link>
@@ -80,11 +94,6 @@ export default function BlogCard({ post }: BlogCardProps) {
           </span>
         </div>
         
-        <Link to={`/blog/${post.slug.current}`}>
-          <h2 className="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
-            {post.title}
-          </h2>
-        </Link>
         
         <p className="text-gray-700 mb-4 line-clamp-3">
           {post.body && post.body.length > 0 
