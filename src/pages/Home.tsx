@@ -77,38 +77,13 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: SVG Animation Placeholder */}
+            {/* Right: Hero Image */}
             <div className="flex justify-center lg:justify-end">
-              <div className="w-full max-w-md h-64 bg-gradient-to-br from-[var(--clr-primary)] to-[var(--clr-accent)] rounded-2xl flex items-center justify-center shadow-2xl">
-                <svg className="w-48 h-48 text-white" fill="currentColor" viewBox="0 0 100 100">
-                  {/* Mountain silhouette transforming to digital grid */}
-                  <polygon points="20,70 40,30 50,50 60,20 80,70" fill="currentColor" opacity="0.7">
-                    <animateTransform
-                      attributeName="transform"
-                      attributeType="XML"
-                      type="scale"
-                      dur="3s"
-                      values="1;1.1;1"
-                      repeatCount="indefinite"
-                    />
-                  </polygon>
-                  {/* Digital grid lines */}
-                  <g opacity="0.5">
-                    <line x1="0" y1="75" x2="100" y2="75" stroke="currentColor" strokeWidth="1">
-                      <animate attributeName="opacity" dur="2s" values="0;1;0" repeatCount="indefinite" begin="0s"/>
-                    </line>
-                    <line x1="0" y1="80" x2="100" y2="80" stroke="currentColor" strokeWidth="1">
-                      <animate attributeName="opacity" dur="2s" values="0;1;0" repeatCount="indefinite" begin="0.5s"/>
-                    </line>
-                    <line x1="25" y1="60" x2="25" y2="90" stroke="currentColor" strokeWidth="1">
-                      <animate attributeName="opacity" dur="2s" values="0;1;0" repeatCount="indefinite" begin="1s"/>
-                    </line>
-                    <line x1="75" y1="60" x2="75" y2="90" stroke="currentColor" strokeWidth="1">
-                      <animate attributeName="opacity" dur="2s" values="0;1;0" repeatCount="indefinite" begin="1.5s"/>
-                    </line>
-                  </g>
-                </svg>
-              </div>
+              <img 
+                src="/hero_image.jpg" 
+                alt="地方の現場をAIで変革するイメージ" 
+                className="w-full max-w-md h-auto rounded-2xl shadow-2xl object-cover"
+              />
             </div>
           </div>
         </div>

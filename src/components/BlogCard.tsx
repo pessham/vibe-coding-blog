@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import type { BlogPost } from '../types/blog';
-import { urlFor } from '../lib/sanity';
 import UnsplashImage from './UnsplashImage';
 
 interface BlogCardProps {
@@ -47,29 +46,14 @@ export default function BlogCard({ post }: BlogCardProps) {
     <article className="card overflow-hidden">
       <Link to={`/blog/${post.slug.current}`}>
         <div className="relative aspect-[4/3] overflow-hidden">
-          {post.mainImage && post.mainImage.asset && post.mainImage.asset._ref && post.mainImage.asset._ref.startsWith('image-') ? (
-            <img
-              src={urlFor(post.mainImage).width(600).height(450).url()}
-              alt={post.mainImage.alt || post.title}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              onError={(e) => {
-                // Sanity画像エラー時はUnsplash画像にフォールバック
-                e.currentTarget.style.display = 'none';
-                const fallbackDiv = e.currentTarget.nextElementSibling as HTMLElement;
-                if (fallbackDiv) fallbackDiv.style.display = 'block';
-              }}
-            />
-          ) : null}
-          <div style={{ display: post.mainImage && post.mainImage.asset && post.mainImage.asset._ref && post.mainImage.asset._ref.startsWith('image-') ? 'none' : 'block' }}>
-            <UnsplashImage
-              query={getImageQuery()}
-              width={600}
-              height={450}
-              alt={post.title}
-              className="w-full h-full hover:scale-105 transition-transform duration-300"
-              fallbackText={post.title.substring(0, 10)}
-            />
-          </div>
+          <UnsplashImage
+            query={getImageQuery()}
+            width={600}
+            height={450}
+            alt={post.title}
+            className="w-full h-full hover:scale-105 transition-transform duration-300"
+            fallbackText={post.title.substring(0, 10)}
+          />
           {/* タイトルオーバーレイ */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent">
             <div className="absolute bottom-4 left-4 right-4">
