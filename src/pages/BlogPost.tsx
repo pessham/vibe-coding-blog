@@ -141,7 +141,7 @@ export default function BlogPost() {
       }
       if (paragraph.startsWith('### ')) {
         return (
-          <h3 key={index} className="text-2xl font-bold mt-6 mb-4" style={{color: 'var(--clr-primary)'}}>
+          <h3 key={index} className="text-xl font-bold mt-6 mb-3 text-gray-800">
             {paragraph.replace('### ', '')}
           </h3>
         );

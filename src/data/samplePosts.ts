@@ -34,7 +34,7 @@ export const samplePosts: BlogPost[] = [
         }
       }
     ],
-    publishedAt: '2025-07-03T00:00:00Z',
+    publishedAt: '2025-07-01T00:00:00Z',
     body: [
       {
         _type: 'block',
@@ -193,7 +193,7 @@ text: '中小企業にとってAI活用は、もはや避けては通れない�
         }
       }
     ],
-    publishedAt: '2025-07-01T00:00:00Z',
+    publishedAt: '2025-07-02T00:00:00Z',
     body: [
       {
         _type: 'block',
@@ -244,7 +244,7 @@ text: '中小企業にとってAI活用は、もはや避けては通れない�
         }
       }
     ],
-    publishedAt: '2025-06-29T00:00:00Z',
+    publishedAt: '2025-07-03T00:00:00Z',
     body: [
       {
         _type: 'block',
@@ -295,7 +295,7 @@ text: '中小企業にとってAI活用は、もはや避けては通れない�
         }
       }
     ],
-    publishedAt: '2025-06-30T00:00:00Z',
+    publishedAt: '2025-07-04T00:00:00Z',
     body: [
       {
         _type: 'block',
