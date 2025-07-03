@@ -16,6 +16,9 @@ export default function UnsplashImage({ query, width: _width, height: _height, a
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('UnsplashImage: API Key exists:', !!UNSPLASH_ACCESS_KEY);
+    console.log('UnsplashImage: Query:', query);
+    
     if (!UNSPLASH_ACCESS_KEY) {
       console.error('Unsplash Access Key is not defined.');
       setLoading(false);
@@ -24,15 +27,30 @@ export default function UnsplashImage({ query, width: _width, height: _height, a
 
     const fetchImage = async () => {
       try {
-        const response = await fetch(`https://api.unsplash.com/photos/random?query=${query}&client_id=${UNSPLASH_ACCESS_KEY}`);
+        const url = `https://api.unsplash.com/photos/random?query=${encodeURIComponent(query)}&client_id=${UNSPLASH_ACCESS_KEY}`;
+        console.log('UnsplashImage: Fetching from:', url);
+        
+        const response = await fetch(url);
+        console.log('UnsplashImage: Response status:', response.status);
+        
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error('UnsplashImage: API Error:', response.status, errorText);
+          setLoading(false);
+          return;
+        }
+        
         const data = await response.json();
+        console.log('UnsplashImage: Response data:', data);
+        
         if (data.urls && data.urls.regular) {
+          console.log('UnsplashImage: Setting image URL:', data.urls.regular);
           setImageUrl(data.urls.regular);
         } else {
-          console.error('No image found for query:', query);
+          console.error('UnsplashImage: No image found for query:', query, data);
         }
       } catch (error) {
-        console.error('Error fetching image from Unsplash:', error);
+        console.error('UnsplashImage: Fetch error:', error);
       }
       setLoading(false);
     };
