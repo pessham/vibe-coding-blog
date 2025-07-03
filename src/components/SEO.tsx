@@ -7,14 +7,14 @@ interface SEOComponentProps extends SEOProps {
 }
 
 export default function SEO({
-  title = 'My Blog',
-  description = 'A modern blog built with React, TypeScript, and Sanity CMS',
+  title = '地方AIブースター',
+  description = '製造業・観光業・農業の現場を生成AIで変革する実践ガイド。地方企業が一番早くAIを導入・活用するためのノウハウとケーススタディを提供します。',
   keywords = [],
   image = '/og-image.jpg',
   url = '',
   type = 'website',
 }: SEOComponentProps) {
-  const siteTitle = title === 'My Blog' ? title : `${title} | My Blog`;
+  const siteTitle = title === '地方AIブースター' ? title : `${title} | 地方AIブースター`;
   
   useEffect(() => {
     // Update document title
@@ -56,9 +56,26 @@ export default function SEO({
     updateMeta('twitter:description', description);
     updateMeta('twitter:image', image);
     
-    // Additional SEO tags
+    // Additional SEO tags for 地方AIブースター
     updateMeta('robots', 'index, follow');
-    updateMeta('author', 'Your Name');
+    updateMeta('author', 'ペスハム');
+    updateMeta('viewport', 'width=device-width, initial-scale=1');
+    updateMeta('language', 'ja');
+    updateMeta('geo.region', 'JP');
+    updateMeta('geo.country', 'Japan');
+    
+    // 地方AIブースター固有のSEOタグ
+    updateMeta('theme-color', '#18634B');
+    updateMeta('application-name', '地方AIブースター');
+    
+    // 構造化データ用のメタタグ
+    updateMeta('article:author', 'ペスハム');
+    updateMeta('article:publisher', '地方AIブースター', true);
+    
+    // 検索エンジン最適化
+    if (keywords.length === 0) {
+      updateMeta('keywords', '地方AI,生成AI,製造業DX,観光業DX,農業DX,AI導入,ローカルAI,現場改善,AI活用,スマート農業,中小企業AI,地域企業');
+    }
     
     // Update canonical link
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;

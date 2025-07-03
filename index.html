@@ -5,6 +5,98 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>地方AIブースター - 生成AIで地方の現場を労く未来形へ</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="製造業・観光業・農業の現場を生成AIで変革する実践ガイド。地方企業が一番早くAIを導入・活用するためのノウハウとケーススタディを提供します。" />
+    <meta name="keywords" content="地方AI,生成AI,製造業DX,観光業DX,農業DX,AI導入,ローカルAI,現場改善,AI活用,スマート農業,中小企業AI,地域企業" />
+    <meta name="author" content="ペスハム" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="ja" />
+    <meta name="geo.region" content="JP" />
+    <meta name="geo.country" content="Japan" />
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="地方AIブースター - 生成AIで地方の現場を労く未来形へ" />
+    <meta property="og:description" content="製造業・観光業・農業の現場を生成AIで変革する実践ガイド。地方企業が一番早くAIを導入・活用するためのノウハウとケーススタディを提供します。" />
+    <meta property="og:url" content="https://chihoai.com" />
+    <meta property="og:site_name" content="地方AIブースター" />
+    <meta property="og:locale" content="ja_JP" />
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="地方AIブースター - 生成AIで地方の現場を労く未来形へ" />
+    <meta name="twitter:description" content="製造業・観光業・農業の現場を生成AIで変革する実践ガイド。地方企業が一番早くAIを導入・活用するためのノウハウとケーススタディを提供します。" />
+    
+    <!-- Theme and Application -->
+    <meta name="theme-color" content="#18634B" />
+    <meta name="application-name" content="地方AIブースター" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chihoai.com" />
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+      
+      // Google Ads Conversion Tracking
+      gtag('config', 'AW-CONVERSION_ID');
+      
+      // Custom Events for 地方AIブースター
+      function trackNewsletterSignup() {
+        gtag('event', 'newsletter_signup', {
+          'event_category': 'engagement',
+          'event_label': 'newsletter'
+        });
+      }
+      
+      function trackBlogRead(articleTitle) {
+        gtag('event', 'article_read', {
+          'event_category': 'content',
+          'event_label': articleTitle
+        });
+      }
+      
+      function trackCTAClick(ctaType) {
+        gtag('event', 'cta_click', {
+          'event_category': 'conversion',
+          'event_label': ctaType
+        });
+      }
+      
+      // Make functions globally available
+      window.trackNewsletterSignup = trackNewsletterSignup;
+      window.trackBlogRead = trackBlogRead;
+      window.trackCTAClick = trackCTAClick;
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "地方AIブースター",
+      "description": "製造業・観光業・農業の現場を生成AIで変革する実践ガイド",
+      "url": "https://chihoai.com",
+      "author": {
+        "@type": "Person",
+        "name": "ペスハム"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "地方AIブースター"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://chihoai.com/blog?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

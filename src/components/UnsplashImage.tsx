@@ -14,22 +14,25 @@ export default function UnsplashImage({ query, width: _width, height: _height, a
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // API制限回避のため、カテゴリーに応じた固定画像を使用
+    // TOPページとの一貫性を保つため、統一された画像セットを使用
     const getStaticImageUrl = (query: string) => {
       if (query.includes('manufacturing') || query.includes('factory')) {
-        return 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+        return 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
       }
       if (query.includes('agriculture') || query.includes('farming')) {
-        return 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+        return 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
       }
-      if (query.includes('business') || query.includes('office')) {
-        return 'https://images.unsplash.com/photo-1664575602276-acd073f104c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+      if (query.includes('business') || query.includes('office') || query.includes('small business')) {
+        return 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
       }
       if (query.includes('tourism') || query.includes('travel')) {
-        return 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+        return 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
       }
-      // デフォルト：テクノロジー/AI関連
-      return 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+      if (query.includes('ai') || query.includes('artificial intelligence')) {
+        return 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
+      }
+      // デフォルト：地方AIブースターのメインテーマに合わせたビジネス・テクノロジー
+      return 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80';
     };
 
     const staticImageUrl = getStaticImageUrl(query);
