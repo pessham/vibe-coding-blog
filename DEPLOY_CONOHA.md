@@ -44,6 +44,8 @@ GitHubリポジトリ設定で以下のSecretsを追加：
 | `CONOHA_PORT` | ポート番号 | `2222` |
 | `CONOHA_REMOTE_PATH` | デプロイ先パス | `/home/02pd2_c2707589/public_html/pessham.com/viblog/` |
 | `CONOHA_SSH_KEY` | 秘密鍵の内容 | `-----BEGIN RSA PRIVATE KEY-----...` |
+| `CONOHA_FTP_USER` | FTPユーザー名 | `02pd2_c2707589` |
+| `CONOHA_FTP_PASS` | FTPパスワード | `[FTPパスワード]` |
 
 ### 秘密鍵の設定方法
 1. ダウンロードした秘密鍵ファイル（`.key`）をテキストエディタで開く
@@ -74,12 +76,39 @@ GitHubリポジトリ設定で以下のSecretsを追加：
 1. GitHubの「Actions」タブでログ確認
 2. ドメインにアクセスしてサイト動作確認
 
-## 4. トラブルシューティング
+## 4. SSH有効化確認
+
+### ConoHa WINGでSSH有効化
+1. **サーバー管理** → **SSH**
+2. SSH接続を「**利用する**」に設定
+3. 接続許可ポートが「**2222**」になっているか確認
+4. アクセス許可IPは「**すべて許可**」または適切に設定
+
+### SSH接続テスト（ローカル）
+```bash
+ssh -p 2222 02pd2_c2707589@pessham.conohawing.com
+```
+
+## 5. FTP設定（代替手段）
+
+SSH接続ができない場合のFTP設定：
+
+### FTPアカウント確認
+1. **サイト管理** → **FTP**
+2. FTPアカウント情報を確認
+3. パスワードをリセット（必要に応じて）
+
+### GitHub Secrets追加
+- `CONOHA_FTP_USER`: FTPユーザー名
+- `CONOHA_FTP_PASS`: FTPパスワード
+
+## 6. トラブルシューティング
 
 ### SSH接続エラー
 - SSH Keyが正しく設定されているか確認
 - ConoHa WINGでSSHが有効化されているか確認
 - ホスト名・ポート番号が正しいか確認
+- SSH接続許可設定を確認
 
 ### パス関連エラー
 - `CONOHA_REMOTE_PATH` が正しいか確認
