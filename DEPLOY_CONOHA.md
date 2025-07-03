@@ -142,3 +142,13 @@ Thu Jul  3 08:20:48 JST 2025
 - デプロイ先: https://pessham.com/viblog/
 
 実行日時: Thu Jul  3 08:58:07 JST 2025
+
+## 再デプロイテスト - ポート8022対応
+正しいSSHポート番号でのデプロイテスト
+
+- ホスト: pessham.conohawing.com
+- ポート: 8022 (修正済み)
+- ユーザー: 02pd2_c2707589
+- パス: /home/02pd2_c2707589/public_html/pessham.com/viblog/
+
+実行日時: Thu Jul  3 09:30:11 JST 2025
