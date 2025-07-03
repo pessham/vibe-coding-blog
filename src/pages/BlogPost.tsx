@@ -196,37 +196,31 @@ export default function BlogPost() {
       />
       
       <article>
-        {/* ヒーロー画像セクション */}
+        {/* タイトルセクション（黒背景） */}
+        <div className="bg-black py-16 px-8">
+          <div className="max-w-4xl mx-auto">
+            <Link 
+              to="/blog"
+              className="inline-flex items-center text-white text-lg font-bold transition-colors hover:underline mb-6"
+            >
+              ← ブログ一覧に戻る
+            </Link>
+            <h1 className="text-3xl lg:text-5xl font-black text-white leading-tight">
+              {post.title}
+            </h1>
+          </div>
+        </div>
+
+        {/* 画像セクション */}
         <div className="relative h-80 lg:h-96 mb-16 overflow-hidden">
-          {/* 背景画像 */}
-          <div className="absolute inset-0">
-            <UnsplashImage
-              query={getImageQuery()}
-              width={1200}
-              height={600}
-              alt={post.title}
-              className="w-full h-full object-cover"
-              fallbackText="Vibe Coding"
-            />
-          </div>
-          
-          {/* オーバーレイ */}
-          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-          
-          {/* タイトルコンテンツ */}
-          <div className="relative z-10 h-full flex flex-col justify-end p-8">
-            <div className="max-w-4xl mx-auto w-full">
-              <Link 
-                to="/blog"
-                className="inline-flex items-center text-white text-lg font-bold transition-colors hover:underline mb-4"
-              >
-                ← ブログ一覧に戻る
-              </Link>
-              <h1 className="text-3xl lg:text-5xl font-black text-white leading-tight drop-shadow-lg">
-                {post.title}
-              </h1>
-            </div>
-          </div>
+          <UnsplashImage
+            query={getImageQuery()}
+            width={1200}
+            height={600}
+            alt={post.title}
+            className="w-full h-full object-cover"
+            fallbackText="記事画像"
+          />
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
