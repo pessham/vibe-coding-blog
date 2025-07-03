@@ -13,7 +13,7 @@ export default function Header() {
                 className="w-10 h-10 rounded-lg object-cover shadow-md group-hover:scale-105 transition-transform"
               />
               <h1 className="heading-accent text-lg font-black group-hover:scale-105 transition-transform whitespace-nowrap" style={{color: 'var(--clr-black)'}}>
-                バイブコーディング<span style={{color: 'var(--clr-primary)'}}>マインド</span>
+                地方<span style={{color: 'var(--clr-primary)'}}>AI</span><span style={{color: 'var(--clr-accent)'}}>ブースター</span>
               </h1>
             </div>
           </Link>
@@ -27,17 +27,31 @@ export default function Header() {
               ホーム
             </Link>
             <Link
+              to="/blog?category=manufacturing"
+              className="nav-link px-4 py-2 rounded-lg text-sm font-bold transition-all hover:scale-105"
+              style={{color: 'var(--clr-gray-dark)'}}
+            >
+              製造業DX
+            </Link>
+            <Link
+              to="/blog?category=tourism"
+              className="nav-link px-4 py-2 rounded-lg text-sm font-bold transition-all hover:scale-105"
+              style={{color: 'var(--clr-gray-dark)'}}
+            >
+              観光業DX
+            </Link>
+            <Link
               to="/blog"
               className="nav-link px-4 py-2 rounded-lg text-sm font-bold transition-all hover:scale-105"
               style={{color: 'var(--clr-gray-dark)'}}
             >
-              ブログ
+              すべて
             </Link>
             <Link
               to="/about"
               className="btn-primary text-sm px-4 py-2"
             >
-              About
+              運営者
             </Link>
           </nav>
           

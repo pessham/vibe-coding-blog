@@ -4,9 +4,9 @@ export const samplePosts: BlogPost[] = [
   {
     _id: 'sample-1',
     _type: 'post',
-    title: 'バイブコーディングとは？ - AI時代の新しいプログラミング手法',
+    title: '地方製造業のAI導入事例 - 品質管理データ分析で不良品率35%削減',
     slug: {
-      current: 'what-is-vibe-coding'
+      current: 'manufacturing-ai-case-study'
     },
     author: {
       name: 'ペスハム',
@@ -22,15 +22,15 @@ export const samplePosts: BlogPost[] = [
     },
     categories: [
       {
-        title: 'バイブコーディング',
+        title: '製造業DX',
         slug: {
-          current: 'vibe-coding'
+          current: 'manufacturing'
         }
       },
       {
-        title: 'AI開発',
+        title: 'AI導入事例',
         slug: {
-          current: 'ai-development'
+          current: 'ai-case-study'
         }
       }
     ],
@@ -41,7 +41,7 @@ export const samplePosts: BlogPost[] = [
         children: [
           {
             _type: 'span',
-            text: '「バイブコーディング（Vibe Coding）」は、AIを活用した新しいプログラミング手法であり、近年注目を集めています。その概念、具体的な実践内容、関連ツール、そして将来への影響について、総合的に解説します。'
+            text: '地方の中堅製造業A社が、生成AIを活用した品質管理データ分析により、不良品率を35%削減し、分析時間を一日あたり2.5時間短縮することに成功した事例をご紹介します。'
           }
         ]
       },
@@ -50,7 +50,7 @@ export const samplePosts: BlogPost[] = [
         children: [
           {
             _type: 'span',
-            text: '## 命名者とその発言'
+            text: '## 導入背景と課題'
           }
         ]
       },
@@ -59,7 +59,7 @@ export const samplePosts: BlogPost[] = [
         children: [
           {
             _type: 'span',
-            text: 'バイブコーディングという言葉は、OpenAIの共同創業者の一人である**Andrej Karpathy（アンドレイ・カルパシー）氏**が2025年2月初旬にX（旧Twitter）に投稿したことがきっかけで広く知られるようになりました。'
+            text: 'A社は従業員150名の金属加工業で、長年にわたり品質管理に課題を抱えていました。特に不良品の原因特定と分析に多大な時間を要し、ベテラン作業員の経験と勘に依存した品質管理が限界に達していました。'
           }
         ]
       },
@@ -317,9 +317,9 @@ export const samplePosts: BlogPost[] = [
       }
     ],
     seo: {
-      title: 'バイブコーディングとは？ - AI時代の新しいプログラミング手法【Andrej Karpathy氏提唱】',
-      description: 'OpenAI共同創業者Andrej Karpathy氏が提唱した「バイブコーディング」について詳しく解説。AIと協働する新しいプログラミング手法の概念、実践方法、関連ツール、将来への影響まで総合的に紹介します。',
-      keywords: ['バイブコーディング', 'Vibe Coding', 'Andrej Karpathy', 'AI開発', 'Claude Code', 'Cursor Composer', 'プロンプトエンジニアリング', 'LLM', 'プログラミング革命']
+      title: '地方製造業のAI導入事例 - 品質管理データ分析で不良品率35%削減【地方AIブースター】',
+      description: '中堅製造業が生成AIを活用した品質管理データ分析で不良品率35%削減、分析時間2.5時間短縮を実現。具体的な導入手順、成功要因、ROIまで詳しく解説します。',
+      keywords: ['製造業AI', '品質管理', 'ChatGPT', '地方企業', 'DX', '不良品削減', 'データ分析', '生成AI活用', '製造業DX', 'AI導入事例']
     }
   }
 ];

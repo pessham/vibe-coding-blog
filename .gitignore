@@ -27,3 +27,4 @@ dist-ssr
 *.zip
 conoha-deploy.*
 deploy-*.zip
+.vercel

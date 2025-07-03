@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
-/* Import pessham.com fonts */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=M+PLUS+1p:wght@400;500;700;900&family=RocknRoll+One&display=swap');
+/* Import fonts for 地方AIブースター */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=BIZ+UDPGothic:wght@400;700&display=swap');
 
 :root {
-  /* Vibe Coding Mind color scheme */
-  --clr-primary: #e74c3c;
-  --clr-primary-light: #ec7063;
-  --clr-primary-dark: #c0392b;
-  --clr-secondary: #0066cc;
+  /* 地方AIブースター color scheme */
+  --clr-primary: #18634B; /* ディープグリーン */
+  --clr-primary-light: #2B8A64;
+  --clr-primary-dark: #0F4A38;
+  --clr-accent: #29D3C3; /* エメラルドシアン */
+  --clr-accent-light: #4DDDD1;
+  --clr-secondary: #EADDC9; /* サンドベージュ */
   --clr-black: #000000;
   --clr-gray-dark: #333333;
   --clr-gray: #666666;
   --clr-gray-light: #f8f8f8;
   --clr-white: #ffffff;
-  --clr-bg-1: #DAD9D5;
-  --clr-bg-2: #F5F3F4;
+  --clr-bg-1: #F7F8FA; /* やや灰がかったホワイト */
+  --clr-bg-2: #EADDC9; /* サンドベージュ */
   --radius: 8px;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
   
-  /* Font families matching pessham.com */
+  /* Font families for 地方AIブースター */
   font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   font-weight: 400;
@@ -42,9 +44,9 @@ body {
   font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Typography matching pessham.com */
+/* Typography for 地方AIブースター */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'M PLUS 1p', 'Noto Sans JP', sans-serif;
+  font-family: 'BIZ UDPGothic', 'Noto Sans JP', sans-serif;
   font-weight: 700;
   line-height: 1.2;
   color: var(--clr-black);
@@ -63,33 +65,33 @@ h3 {
 }
 
 .heading-accent {
-  font-family: 'RocknRoll One', 'M PLUS 1p', sans-serif;
+  font-family: 'BIZ UDPGothic', 'Noto Sans JP', sans-serif;
 }
 
-/* Links with pessham.com styling */
+/* Links styling */
 a {
-  color: var(--clr-secondary);
+  color: var(--clr-primary);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 a:hover {
-  color: var(--clr-primary);
+  color: var(--clr-accent);
   transform: translateY(-1px);
 }
 
-/* Buttons matching pessham.com */
+/* Buttons styling */
 .btn-primary {
-  background: linear-gradient(135deg, var(--clr-primary) 0%, var(--accent-orange) 100%);
+  background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
   color: white;
   border: none;
   border-radius: 8px;
   padding: 12px 24px;
   font-weight: 700;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'BIZ UDPGothic', 'Noto Sans JP', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+  box-shadow: 0 4px 15px rgba(24, 99, 75, 0.3);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -98,7 +100,7 @@ a:hover {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+  box-shadow: 0 6px 20px rgba(24, 99, 75, 0.4);
   color: white;
 }
 
@@ -109,7 +111,7 @@ a:hover {
   border-radius: 8px;
   padding: 10px 22px;
   font-weight: 700;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'BIZ UDPGothic', 'Noto Sans JP', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
