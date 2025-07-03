@@ -18,7 +18,7 @@ GitHub Actionsを使ってConoHa WINGに自動デプロイする設定手順で�
 サーバー管理画面で以下の情報を確認：
 - **ホスト名**: `pessham.conohawing.com`
 - **ユーザー名**: `02pd2_c2707589`（実際のアカウント名）
-- **ポート**: `2222`
+- **ポート**: `8022`
 
 ### デプロイ先パス確認
 **ConoHa WINGではパス構造が複数パターンあります。以下で確認：**
@@ -41,7 +41,7 @@ GitHubリポジトリ設定で以下のSecretsを追加：
 |----------|----|----|
 | `CONOHA_HOST` | ホスト名 | `pessham.conohawing.com` |
 | `CONOHA_USER` | ユーザー名 | `02pd2_c2707589` |
-| `CONOHA_PORT` | ポート番号 | `2222` |
+| `CONOHA_PORT` | ポート番号 | `8022` |
 | `CONOHA_REMOTE_PATH` | デプロイ先パス | `/home/02pd2_c2707589/public_html/pessham.com/viblog/` |
 | `CONOHA_SSH_KEY` | 秘密鍵の内容 | `-----BEGIN RSA PRIVATE KEY-----...` |
 | `CONOHA_FTP_USER` | FTPユーザー名 | `02pd2_c2707589` |
@@ -81,12 +81,12 @@ GitHubリポジトリ設定で以下のSecretsを追加：
 ### ConoHa WINGでSSH有効化
 1. **サーバー管理** → **SSH**
 2. SSH接続を「**利用する**」に設定
-3. 接続許可ポートが「**2222**」になっているか確認
+3. 接続許可ポートが「**8022**」になっているか確認
 4. アクセス許可IPは「**すべて許可**」または適切に設定
 
 ### SSH接続テスト（ローカル）
 ```bash
-ssh -p 2222 02pd2_c2707589@pessham.conohawing.com
+ssh -p 8022 02pd2_c2707589@pessham.conohawing.com
 ```
 
 ## 5. FTP設定（代替手段）
