@@ -48,8 +48,14 @@ export default function UnsplashImage({ query, width: _width, height: _height, a
         alt={alt} 
         className={className}
         style={{
-          display: 'block',
-          objectFit: 'cover'
+          display: 'block !important',
+          objectFit: 'cover',
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          zIndex: '1'
         }}
       />
     );
