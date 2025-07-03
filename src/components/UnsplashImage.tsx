@@ -46,7 +46,11 @@ export default function UnsplashImage({ query, width: _width, height: _height, a
       <img 
         src={imageUrl} 
         alt={alt} 
-        className={`${className} object-cover`}
+        className={className}
+        style={{
+          display: 'block',
+          objectFit: 'cover'
+        }}
       />
     );
   }
